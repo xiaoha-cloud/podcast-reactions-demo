@@ -50,29 +50,21 @@ PodcastReactionDemo/
     └── Utils/               `TimeFormatter.swift` (time + `DesignTokens` for the comment stack)
 ```
 
-## Screenshots
+## App Highlights
 
-Images live in **`docs/screenshots/`** (PNG).
+| Episode player | Comments hub | Moment comments (1) |
+|----------------|--------------|---------------------|
+| ![Episode player](https://github.com/xiaoha-cloud/podcast-reactions-demo/blob/main/docs/screenshots/episode-player.png?raw=true) | ![Comments hub](https://github.com/xiaoha-cloud/podcast-reactions-demo/blob/main/docs/screenshots/comments-hub.png?raw=true) | ![Moment comments 1](https://github.com/xiaoha-cloud/podcast-reactions-demo/blob/main/docs/screenshots/moment-comments1.png?raw=true) |
 
-**Episode player**
+| Moment comments (2) | Add comment | |
+|---------------------|-------------|--|
+| ![Moment comments 2](https://github.com/xiaoha-cloud/podcast-reactions-demo/blob/main/docs/screenshots/moment-comments2.png?raw=true) | ![Add comment](https://github.com/xiaoha-cloud/podcast-reactions-demo/blob/main/docs/screenshots/add-comment.png?raw=true) | |
 
-![Episode player screen](docs/screenshots/episode-player.png)
+Source files: **`docs/screenshots/`** (PNG).
 
-**Comments hub (tabs and current moment entry)**
+[GitHub Repo](https://github.com/xiaoha-cloud/podcast-reactions-demo)
 
-![Comments hub](docs/screenshots/comments-hub.png)
-
-**Moment comments (1)**
-
-![Moment comments 1](docs/screenshots/moment-comments1.png)
-
-**Moment comments (2)**
-
-![Moment comments 2](docs/screenshots/moment-comments2.png)
-
-**Add comment sheet**
-
-![Add comment](docs/screenshots/add-comment.png)
+---
 
 ## License
 
