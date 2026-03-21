@@ -22,7 +22,14 @@ enum MockData {
         UUID(uuidString: "C000000D-000D-4000-8000-00000000000D")!,
         UUID(uuidString: "C000000E-000E-4000-8000-00000000000E")!,
         UUID(uuidString: "C000000F-000F-4000-8000-00000000000F")!,
+        UUID(uuidString: "C0000010-0010-4000-8000-000000000010")!,
+        UUID(uuidString: "C0000011-0011-4000-8000-000000000011")!,
+        UUID(uuidString: "C0000012-0012-4000-8000-000000000012")!,
+        UUID(uuidString: "C0000013-0013-4000-8000-000000000013")!,
     ]
+
+    /// Demo playhead for **05:15** — rich “current moment” with several comments (`DEBUG` initial seek in `EpisodeViewModel`).
+    static let demoInterviewPlayheadSeconds: Int = 315
 
     /// Anchor for relative `createdAt` values (deterministic).
     private static let createdAtAnchor: Date = {
@@ -52,7 +59,7 @@ enum MockData {
         durationSeconds: 2300
     )
 
-    /// Fifteen comments across 195 / 754 / 1100 / 1600 seconds (3 + 5 + 4 + 3).
+    /// Nineteen comments across 195 / 315 / 754 / 1100 / 1600 seconds (3 + 4 + 5 + 4 + 3).
     static let sampleComments: [ReactionComment] = [
         // 03:15 — 195 s (×3)
         ReactionComment(
@@ -84,6 +91,48 @@ enum MockData {
             mood: .surprising,
             likesCount: 45,
             createdAt: date(offsetMinutes: -45)
+        ),
+
+        // 05:15 — 315 s (×4) stable interview-demo anchor
+        ReactionComment(
+            id: commentIds[15],
+            episodeId: episodeId,
+            timestampSeconds: 315,
+            userName: "demo_host",
+            content: "This is the scripted beat at 05:15—use it for the “current moment” walkthrough.",
+            mood: .meaningful,
+            likesCount: 24,
+            createdAt: date(offsetMinutes: -400)
+        ),
+        ReactionComment(
+            id: commentIds[16],
+            episodeId: episodeId,
+            timestampSeconds: 315,
+            userName: "listener_42",
+            content: "Pausing here every time—the framing is clearer than my notes.",
+            mood: .thoughtful,
+            likesCount: 9,
+            createdAt: date(offsetMinutes: -350)
+        ),
+        ReactionComment(
+            id: commentIds[17],
+            episodeId: episodeId,
+            timestampSeconds: 315,
+            userName: "sketch_note",
+            content: "Screenshotting for the team. The diagram they mention lands right here.",
+            mood: .surprising,
+            likesCount: 3,
+            createdAt: date(offsetMinutes: -300)
+        ),
+        ReactionComment(
+            id: commentIds[18],
+            episodeId: episodeId,
+            timestampSeconds: 315,
+            userName: "quiet_car",
+            content: "Funny how calm this segment feels compared to the opener.",
+            mood: .funny,
+            likesCount: 11,
+            createdAt: date(offsetMinutes: -120)
         ),
 
         // 12:34 — 754 s (×5)

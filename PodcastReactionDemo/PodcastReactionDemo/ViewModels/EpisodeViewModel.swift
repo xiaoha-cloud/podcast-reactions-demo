@@ -13,10 +13,10 @@ final class EpisodeViewModel {
     var podcast: Podcast { service.podcast }
 
     var currentPlaybackTime: Int = 0
-    /// Focused moment for `MomentCommentsView` / add-comment flow.
+    /// Focused moment for `MomentCommentsView` / add-comment flow. Not cleared when the add sheet dismisses.
     var selectedTimestampSeconds: Int?
 
-    /// Timeline vs Popular — **only** for `MomentCommentsView` / `commentsForSelectedTimestamp()`.
+    /// Timeline vs Popular — **only** for `MomentCommentsView` / `commentsForMoment` / `commentsForSelectedTimestamp()`.
     var selectedSortOption: CommentSortOption = .timeline
 
     var selectedCommentTab: CommentTab = .all
@@ -37,30 +37,35 @@ final class EpisodeViewModel {
 
     init(service: MockReactionService) {
         self.service = service
+        #if DEBUG
+        simulateSeek(to: MockData.demoInterviewPlayheadSeconds)
+        #endif
     }
 
     convenience init() {
         self.init(service: MockReactionService())
     }
 
+    /// Delegates to `MockReactionService` sort helpers (Latest tab uses `.timeline` = newest `createdAt` first).
     func sortedComments(_ comments: [ReactionComment], by option: CommentSortOption) -> [ReactionComment] {
         service.sortedComments(comments, by: option)
     }
 
-    /// Optional hook before pushing `CommentsView` (navigation is primary path).
+    /// Optional hook when `CommentsView` appears (navigation remains the primary entry).
     func openComments() {}
 
+    /// Switches the All / Latest / Moments hub tab.
     func selectCommentTab(_ tab: CommentTab) {
         selectedCommentTab = tab
     }
 
-    /// Sets focused moment and syncs simulated playback (demo UX).
+    /// Sets the focused moment, updates `selectedTimestampSeconds`, and moves the **simulated** playhead for demo UX.
     func selectTimestamp(_ seconds: Int) {
         selectedTimestampSeconds = seconds
         simulateSeek(to: seconds)
     }
 
-    /// **All**: follow the episode — anchor time ascending, then newest comment first within the same second.
+    /// **All tab**: episode order — anchor time ascending; within the same second, newest `createdAt` first.
     func commentsForAllTab() -> [ReactionComment] {
         _ = commentRevision
         return service.allComments().sorted {
@@ -74,13 +79,13 @@ final class EpisodeViewModel {
         }
     }
 
-    /// **Latest**: global “newest activity first” — `createdAt` descending (independent of anchor order).
+    /// **Latest tab**: global activity — `createdAt` descending (same as service “timeline” sort on the full list).
     func commentsForLatestTab() -> [ReactionComment] {
         _ = commentRevision
         return service.sortedComments(service.allComments(), by: .timeline)
     }
 
-    /// **Moments**: group by `timestampSeconds`; preview = top 2 by `likesCount` (per doc example).
+    /// **Moments tab**: one row per anchor second; preview picks top comments by likes for the row body.
     func momentGroups() -> [MomentCommentGroup] {
         _ = commentRevision
         let grouped = Dictionary(grouping: service.allComments(), by: \.timestampSeconds)
@@ -107,7 +112,7 @@ final class EpisodeViewModel {
         }
     }
 
-    /// Comments at the **current playhead** — always timeline order (no Popular here).
+    /// Comments at the **current playhead** only — timeline order; no Popular sort on this surface.
     func commentsForCurrentMoment() -> [ReactionComment] {
         _ = commentRevision
         let t = currentPlaybackTime
@@ -115,14 +120,23 @@ final class EpisodeViewModel {
         return service.sortedComments(at, by: .timeline)
     }
 
-    /// Selected moment detail — respects `selectedSortOption` (Moment page only).
-    func commentsForSelectedTimestamp() -> [ReactionComment] {
+    /// One anchor second, sorted by `selectedSortOption` — list data for `MomentCommentsView` (uses the pushed `timestampSeconds`).
+    func commentsForMoment(timestampSeconds: Int) -> [ReactionComment] {
         _ = commentRevision
-        guard let seconds = selectedTimestampSeconds else { return [] }
-        let atPoint = service.comments(atTimestampSeconds: seconds)
+        let atPoint = service.comments(atTimestampSeconds: timestampSeconds)
         return service.sortedComments(atPoint, by: selectedSortOption)
     }
 
+    /// Same as `commentsForMoment` but uses `selectedTimestampSeconds` (nil → empty); observation-friendly when selection is empty.
+    func commentsForSelectedTimestamp() -> [ReactionComment] {
+        guard let seconds = selectedTimestampSeconds else {
+            _ = commentRevision
+            return []
+        }
+        return commentsForMoment(timestampSeconds: seconds)
+    }
+
+    /// Appends a comment at `selectedTimestampSeconds` (must match the moment on screen). Bumps `commentRevision`.
     func addComment(content: String, mood: ReactionMood) {
         guard let ts = selectedTimestampSeconds else { return }
         let trimmed = content.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -131,6 +145,7 @@ final class EpisodeViewModel {
         commentRevision += 1
     }
 
+    /// Demo-only simulated seek — clamps to episode duration and updates `currentPlaybackTime`.
     func simulateSeek(to seconds: Int) {
         let clamped = min(max(0, seconds), episode.durationSeconds)
         currentPlaybackTime = clamped
@@ -148,7 +163,7 @@ final class EpisodeViewModel {
 extension EpisodeViewModel {
     static let preview: EpisodeViewModel = {
         let vm = EpisodeViewModel()
-        vm.selectTimestamp(vm.highlightTimestampsSeconds.first ?? 195)
+        vm.selectTimestamp(MockData.demoInterviewPlayheadSeconds)
         return vm
     }()
 }

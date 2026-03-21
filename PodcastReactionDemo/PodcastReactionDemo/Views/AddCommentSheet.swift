@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 @MainActor
 struct AddCommentSheet: View {
@@ -29,6 +30,8 @@ struct AddCommentSheet: View {
                     }
                 }
             }
+            .scrollContentBackground(.hidden)
+            .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle("Add comment")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

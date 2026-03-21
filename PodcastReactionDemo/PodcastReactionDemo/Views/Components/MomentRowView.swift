@@ -4,39 +4,43 @@ struct MomentRowView: View {
     let group: MomentCommentGroup
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline) {
                 Text(TimeFormatter.mmss(from: group.timestampSeconds))
-                    .font(.subheadline.weight(.semibold).monospacedDigit())
-                Spacer()
+                    .font(.headline.weight(.semibold))
+                    .monospacedDigit()
+                Spacer(minLength: 0)
                 Text("\(group.commentsCount) comments")
-                    .font(.caption)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
+
             if group.totalLikesCount > 0 {
                 Text("\(group.totalLikesCount) likes at this moment")
                     .font(.caption2)
                     .foregroundStyle(.tertiary)
             }
+
             ForEach(group.previewComments) { c in
-                HStack(alignment: .top, spacing: 6) {
+                HStack(alignment: .top, spacing: 8) {
                     Text(c.mood.displayEmoji)
+                        .font(.caption)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(c.userName)
                             .font(.caption.weight(.semibold))
                         Text(c.content)
                             .font(.caption)
                             .foregroundStyle(.secondary)
-                            .lineLimit(2)
+                            .lineLimit(1)
                     }
                     Spacer(minLength: 0)
                     Text("\(c.likesCount)")
                         .font(.caption2.monospacedDigit())
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.tertiary)
                 }
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, DesignTokens.CommentRow.verticalPadding)
     }
 }
 

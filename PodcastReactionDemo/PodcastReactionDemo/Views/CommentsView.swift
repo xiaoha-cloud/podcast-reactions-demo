@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 @MainActor
 struct CommentsView: View {
@@ -6,14 +7,19 @@ struct CommentsView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: DesignTokens.Layout.sectionSpacing) {
                 currentMomentEntry
 
                 CommentTabBar(selection: $viewModel.selectedCommentTab)
 
                 tabContent
             }
-            .padding()
+            .padding(.horizontal, DesignTokens.Layout.commentStackHorizontal)
+            .padding(.vertical, DesignTokens.Layout.commentStackVertical)
+        }
+        .background(Color(uiColor: .systemBackground))
+        .onAppear {
+            viewModel.openComments()
         }
         .navigationTitle("Comments")
         .navigationBarTitleDisplayMode(.inline)
@@ -38,7 +44,7 @@ struct CommentsView: View {
                                 .foregroundStyle(.secondary)
                                 .lineLimit(2)
                         } else {
-                            Text("No comments at this moment yet.")
+                            Text("Be the first to react at this timestamp.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -48,8 +54,11 @@ struct CommentsView: View {
                         .font(.caption.weight(.semibold))
                         .foregroundStyle(.tertiary)
                 }
-                .padding()
-                .background(Color(.secondarySystemBackground), in: RoundedRectangle(cornerRadius: 12))
+                .padding(DesignTokens.Layout.commentStackVertical)
+                .background(
+                    Color(.secondarySystemBackground),
+                    in: RoundedRectangle(cornerRadius: DesignTokens.Card.cornerRadius, style: DesignTokens.Card.cornerStyle)
+                )
             }
             .buttonStyle(.plain)
         }
@@ -70,16 +79,11 @@ struct CommentsView: View {
     private func commentList(_ items: [ReactionComment]) -> some View {
         Group {
             if items.isEmpty {
-                ContentUnavailableView(
-                    "No comments yet",
-                    systemImage: "bubble.left.and.bubble.right",
-                    description: Text("Reactions will show up here.")
-                )
-                .frame(minHeight: 160)
+                emptyAllOrLatest
             } else {
-                LazyVStack(alignment: .leading, spacing: 0) {
+                LazyVStack(alignment: .leading, spacing: DesignTokens.Layout.rowDividerSpacing) {
                     ForEach(items) { c in
-                        ReactionCommentRow(comment: c)
+                        ReactionCommentRow(comment: c, style: .globalList)
                         Divider()
                     }
                 }
@@ -87,18 +91,27 @@ struct CommentsView: View {
         }
     }
 
+    private var emptyAllOrLatest: some View {
+        ContentUnavailableView(
+            "No comments yet",
+            systemImage: "bubble.left.and.bubble.right",
+            description: Text("Reactions will show up here.")
+        )
+        .frame(minHeight: DesignTokens.EmptyState.minHeight)
+    }
+
     private var momentsList: some View {
         let groups = viewModel.momentGroups()
         return Group {
             if groups.isEmpty {
                 ContentUnavailableView(
-                    "No moments yet",
+                    "No highlighted moments yet",
                     systemImage: "clock",
-                    description: Text("Comments grouped by timestamp will appear here.")
+                    description: Text("Comments grouped by time will appear here.")
                 )
-                .frame(minHeight: 160)
+                .frame(minHeight: DesignTokens.EmptyState.minHeight)
             } else {
-                LazyVStack(alignment: .leading, spacing: 0) {
+                LazyVStack(alignment: .leading, spacing: DesignTokens.Layout.rowDividerSpacing) {
                     ForEach(groups) { group in
                         NavigationLink {
                             MomentCommentsView(viewModel: viewModel, timestampSeconds: group.timestampSeconds)
