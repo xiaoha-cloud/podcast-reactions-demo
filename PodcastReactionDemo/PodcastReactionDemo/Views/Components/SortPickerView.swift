@@ -1,12 +1,19 @@
 import SwiftUI
 
-// Placeholder — implemented in a later phase
 struct SortPickerView: View {
+    @Binding var selection: CommentSortOption
+
     var body: some View {
-        Text("Sort")
+        Picker("Sort", selection: $selection) {
+            ForEach(CommentSortOption.allCases, id: \.self) { opt in
+                Text(opt.title).tag(opt)
+            }
+        }
+        .pickerStyle(.segmented)
     }
 }
 
 #Preview {
-    SortPickerView()
+    SortPickerView(selection: .constant(.timeline))
+        .padding()
 }

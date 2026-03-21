@@ -4,7 +4,9 @@ import SwiftUI
 struct PodcastReactionDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            EpisodePlayerView()
+            NavigationStack {
+                EpisodePlayerView()
+            }
         }
     }
 }

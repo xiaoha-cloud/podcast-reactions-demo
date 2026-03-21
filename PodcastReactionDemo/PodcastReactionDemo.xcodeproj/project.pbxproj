@@ -15,8 +15,15 @@
 		A1B000000000000000000006 /* CommentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000006 /* CommentSortOption.swift */; };
 		A1B000000000000000000007 /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000007 /* EpisodeViewModel.swift */; };
 		A1B000000000000000000008 /* EpisodePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000008 /* EpisodePlayerView.swift */; };
-		A1B000000000000000000009 /* ReactionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000009 /* ReactionsSheetView.swift */; };
-		A1B00000000000000000000A /* AddReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000000A /* AddReactionView.swift */; };
+		A1B000000000000000000013 /* CommentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000014 /* CommentTab.swift */; };
+		A1B000000000000000000019 /* MomentCommentGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000001A /* MomentCommentGroup.swift */; };
+		A1B000000000000000000014 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000015 /* CommentsView.swift */; };
+		A1B000000000000000000015 /* MomentCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000016 /* MomentCommentsView.swift */; };
+		A1B000000000000000000016 /* AddCommentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000017 /* AddCommentSheet.swift */; };
+		A1B000000000000000000017 /* CommentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000018 /* CommentTabBar.swift */; };
+		A1B000000000000000000018 /* MomentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F000000000000000000019 /* MomentRowView.swift */; };
+		A1B00000000000000000001A /* EpisodePlayerBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000001B /* EpisodePlayerBackground.swift */; };
+		A1B00000000000000000001B /* SegmentedProgressTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000001C /* SegmentedProgressTrack.swift */; };
 		A1B00000000000000000000B /* TimestampChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000000B /* TimestampChipView.swift */; };
 		A1B00000000000000000000C /* ReactionCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000000C /* ReactionCommentRow.swift */; };
 		A1B00000000000000000000D /* MockPlayerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F00000000000000000000D /* MockPlayerCardView.swift */; };
@@ -34,13 +41,20 @@
 		A1F000000000000000000004 /* ReactionMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionMood.swift; sourceTree = "<group>"; };
 		A1F000000000000000000005 /* ReactionComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionComment.swift; sourceTree = "<group>"; };
 		A1F000000000000000000006 /* CommentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSortOption.swift; sourceTree = "<group>"; };
+		A1F000000000000000000014 /* CommentTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTab.swift; sourceTree = "<group>"; };
+		A1F00000000000000000001A /* MomentCommentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentGroup.swift; sourceTree = "<group>"; };
 		A1F000000000000000000007 /* EpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
 		A1F000000000000000000008 /* EpisodePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePlayerView.swift; sourceTree = "<group>"; };
-		A1F000000000000000000009 /* ReactionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsSheetView.swift; sourceTree = "<group>"; };
-		A1F00000000000000000000A /* AddReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionView.swift; sourceTree = "<group>"; };
+		A1F000000000000000000015 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		A1F000000000000000000016 /* MomentCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentsView.swift; sourceTree = "<group>"; };
+		A1F000000000000000000017 /* AddCommentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentSheet.swift; sourceTree = "<group>"; };
 		A1F00000000000000000000B /* TimestampChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampChipView.swift; sourceTree = "<group>"; };
 		A1F00000000000000000000C /* ReactionCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionCommentRow.swift; sourceTree = "<group>"; };
 		A1F00000000000000000000D /* MockPlayerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlayerCardView.swift; sourceTree = "<group>"; };
+		A1F000000000000000000018 /* CommentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTabBar.swift; sourceTree = "<group>"; };
+		A1F000000000000000000019 /* MomentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentRowView.swift; sourceTree = "<group>"; };
+		A1F00000000000000000001B /* EpisodePlayerBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodePlayerBackground.swift; sourceTree = "<group>"; };
+		A1F00000000000000000001C /* SegmentedProgressTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressTrack.swift; sourceTree = "<group>"; };
 		A1F00000000000000000000E /* SortPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortPickerView.swift; sourceTree = "<group>"; };
 		A1F00000000000000000000F /* MockReactionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReactionService.swift; sourceTree = "<group>"; };
 		A1F000000000000000000010 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -107,6 +121,8 @@
 				A1F000000000000000000004 /* ReactionMood.swift */,
 				A1F000000000000000000005 /* ReactionComment.swift */,
 				A1F000000000000000000006 /* CommentSortOption.swift */,
+				A1F000000000000000000014 /* CommentTab.swift */,
+				A1F00000000000000000001A /* MomentCommentGroup.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,8 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				A1F000000000000000000008 /* EpisodePlayerView.swift */,
-				A1F000000000000000000009 /* ReactionsSheetView.swift */,
-				A1F00000000000000000000A /* AddReactionView.swift */,
+				A1F000000000000000000015 /* CommentsView.swift */,
+				A1F000000000000000000016 /* MomentCommentsView.swift */,
+				A1F000000000000000000017 /* AddCommentSheet.swift */,
 				A1A00000000000000000000B /* Components */,
 			);
 			path = Views;
@@ -137,6 +154,10 @@
 				A1F00000000000000000000C /* ReactionCommentRow.swift */,
 				A1F00000000000000000000D /* MockPlayerCardView.swift */,
 				A1F00000000000000000000E /* SortPickerView.swift */,
+				A1F000000000000000000018 /* CommentTabBar.swift */,
+				A1F000000000000000000019 /* MomentRowView.swift */,
+				A1F00000000000000000001B /* EpisodePlayerBackground.swift */,
+				A1F00000000000000000001C /* SegmentedProgressTrack.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -242,8 +263,15 @@
 				A1B000000000000000000006 /* CommentSortOption.swift in Sources */,
 				A1B000000000000000000007 /* EpisodeViewModel.swift in Sources */,
 				A1B000000000000000000008 /* EpisodePlayerView.swift in Sources */,
-				A1B000000000000000000009 /* ReactionsSheetView.swift in Sources */,
-				A1B00000000000000000000A /* AddReactionView.swift in Sources */,
+				A1B000000000000000000013 /* CommentTab.swift in Sources */,
+				A1B000000000000000000019 /* MomentCommentGroup.swift in Sources */,
+				A1B000000000000000000014 /* CommentsView.swift in Sources */,
+				A1B000000000000000000015 /* MomentCommentsView.swift in Sources */,
+				A1B000000000000000000016 /* AddCommentSheet.swift in Sources */,
+				A1B000000000000000000017 /* CommentTabBar.swift in Sources */,
+				A1B000000000000000000018 /* MomentRowView.swift in Sources */,
+				A1B00000000000000000001A /* EpisodePlayerBackground.swift in Sources */,
+				A1B00000000000000000001B /* SegmentedProgressTrack.swift in Sources */,
 				A1B00000000000000000000B /* TimestampChipView.swift in Sources */,
 				A1B00000000000000000000C /* ReactionCommentRow.swift in Sources */,
 				A1B00000000000000000000D /* MockPlayerCardView.swift in Sources */,
