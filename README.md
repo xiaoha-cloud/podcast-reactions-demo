@@ -3,7 +3,10 @@
 A SwiftUI demo that prototypes **timestamp-based reactions** on top of a **podcast episode player**. It uses local mock data only: no backend, no real audio playback, and no user accounts. The goal is a clear product flow: listen (simulated), open comments, browse by tab or by moment, and post a reaction tied to a specific time in the episode.
 
 ## Demo
-![podcast-demo-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/d26dfd7a-2f34-4912-b2d7-5149b4b1bd18)
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d26dfd7a-2f34-4912-b2d7-5149b4b1bd18" width="300"/>
+</p>
 
 
 ## Requirements
